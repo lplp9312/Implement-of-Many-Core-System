@@ -65,7 +65,7 @@
             return 0;
         }
 
-#### 用3X3 Gaussian Blur 矩陣對來源檔的RGB三個圖層進行卷積，並存入 *image_t 矩陣 (gau_blur.cpp)
+#### 用3X3 Gaussian Blur 矩陣對來源檔的 RGB 三個圖層進行卷積，並存入 *image_t 矩陣 (gau_blur.cpp)
 
         int gau_blur()
         {
