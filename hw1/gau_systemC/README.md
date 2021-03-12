@@ -2,6 +2,6 @@
 
 ## SystemC Simulation
 
--$cd build
--$make run
+- $cd build
+- $make run
 
