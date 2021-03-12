@@ -1,4 +1,4 @@
-# Sobel Edge Detector
+# Gaussian Blur
 
 ## C++ Simulation
 
