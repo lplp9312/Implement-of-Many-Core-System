@@ -2,5 +2,5 @@
 
 ## C++ Simulation
 
-- $make run
+- $make
 
