@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/user/ee6470/docker-images/EE6470/lab02/sobel_fifo
+CMAKE_SOURCE_DIR = /home/user/Implement-of-Many-Core-System/hw1/gau_systemC
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/user/ee6470/docker-images/EE6470/lab02/sobel_fifo/build
+CMAKE_BINARY_DIR = /home/user/Implement-of-Many-Core-System/hw1/gau_systemC/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/user/ee6470/docker-images/EE6470/lab02/sobel_fifo/build/CMakeFiles /home/user/ee6470/docker-images/EE6470/lab02/sobel_fifo/build/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/user/Implement-of-Many-Core-System/hw1/gau_systemC/build/CMakeFiles /home/user/Implement-of-Many-Core-System/hw1/gau_systemC/build/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/user/ee6470/docker-images/EE6470/lab02/sobel_fifo/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/user/Implement-of-Many-Core-System/hw1/gau_systemC/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target

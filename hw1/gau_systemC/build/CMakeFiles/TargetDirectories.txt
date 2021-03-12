@@ -1,5 +1,5 @@
-/home/user/ee6470/docker-images/EE6470/lab02/sobel_fifo/build/CMakeFiles/rebuild_cache.dir
-/home/user/ee6470/docker-images/EE6470/lab02/sobel_fifo/build/CMakeFiles/edit_cache.dir
-/home/user/ee6470/docker-images/EE6470/lab02/sobel_fifo/build/CMakeFiles/check.dir
-/home/user/ee6470/docker-images/EE6470/lab02/sobel_fifo/build/CMakeFiles/run.dir
-/home/user/ee6470/docker-images/EE6470/lab02/sobel_fifo/build/CMakeFiles/gau_blur.dir
+/home/user/Implement-of-Many-Core-System/hw1/gau_systemC/build/CMakeFiles/rebuild_cache.dir
+/home/user/Implement-of-Many-Core-System/hw1/gau_systemC/build/CMakeFiles/edit_cache.dir
+/home/user/Implement-of-Many-Core-System/hw1/gau_systemC/build/CMakeFiles/check.dir
+/home/user/Implement-of-Many-Core-System/hw1/gau_systemC/build/CMakeFiles/run.dir
+/home/user/Implement-of-Many-Core-System/hw1/gau_systemC/build/CMakeFiles/gau_blur.dir
