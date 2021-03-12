@@ -170,8 +170,11 @@
 #### 模糊處理 
 ![image](https://github.com/lplp9312/Implement-of-Many-Core-System/blob/master/hw1/gau_systemC/build/out.bmp)
 
+#### 模擬時間
+![image](https://github.com/lplp9312/Implement-of-Many-Core-System/blob/master/hw1/sim_time.jpg)
+
 ### systemC 架構
-![image](https://github.com/lplp9312/Implement-of-Many-Core-System/blob/master/hw1/%E6%9E%B6%E6%A7%8B.jpg)
+![image](https://github.com/lplp9312/Implement-of-Many-Core-System/blob/master/hw1/systemC.jpg)
 
 ### systemC程式碼重點介紹
 
@@ -214,4 +217,110 @@
         gau_filter.o_result_g(result_g);
         gau_filter.o_result_b(result_b);
 
-#### QQ
+#### Testbench <sc_module> 6條 FIFO_channel 的連接 (Testbench.h)
+
+        sc_fifo_out<unsigned char> o_r;
+        sc_fifo_out<unsigned char> o_g;
+        sc_fifo_out<unsigned char> o_b;
+
+        sc_fifo_in<int> i_result_r;
+        sc_fifo_in<int> i_result_g;
+        sc_fifo_in<int> i_result_b;
+
+#### GauFilter <sc_module> 6條 FIFO_channel 的連接 (GauFilter.h)
+
+        sc_fifo_in<unsigned char> i_r;
+        sc_fifo_in<unsigned char> i_g;
+        sc_fifo_in<unsigned char> i_b;
+
+        sc_fifo_out<int> o_result_r;
+        sc_fifo_out<int> o_result_g;
+        sc_fifo_out<int> o_result_b;
+
+#### Testbench <sc_module> 中，讀取原始圖檔 RGB，並分別寫入 r,g,b <sc_fifo> (Testbench.cpp)
+
+        for (y = 0; y != height; ++y)
+        {
+            for (x = 0; x != width; ++x)
+            {
+                adjustX = (MASK_X % 2) ? 1 : 0; // 1
+                adjustY = (MASK_Y % 2) ? 1 : 0; // 1
+                xBound = MASK_X / 2;            // 1
+                yBound = MASK_Y / 2;            // 1
+
+                for (v = -yBound; v != yBound + adjustY; ++v)
+                { //-1, 0, 1
+                    for (u = -xBound; u != xBound + adjustX; ++u)
+                    { //-1, 0, 1
+                        if (x + u >= 0 && x + u < width && y + v >= 0 && y + v < height)
+                        {
+                            R = *(source_bitmap + bytes_per_pixel * (width * (y + v) + (x + u)) + 2);
+                            G = *(source_bitmap + bytes_per_pixel * (width * (y + v) + (x + u)) + 1);
+                            B = *(source_bitmap + bytes_per_pixel * (width * (y + v) + (x + u)) + 0);
+                        }
+                        else
+                        {
+                            R = 0;
+                            G = 0;
+                            B = 0;
+                        }
+                        o_r.write(R);
+                        o_g.write(G);
+                        o_b.write(B);
+                    }
+                }
+
+            //......
+
+            }
+        }
+
+
+#### GauFilter <sc_module> 中，從 r,g,b <sc_fifo> 讀取資料，並用 3X3 Gaussian Blur 矩陣對其進行卷積，並分別寫入 result_r,result_g,result_b <sc_fifo> (GauFilter.cpp)
+
+        void GauFilter::do_filter() {
+            { wait(); }
+            while (true) {
+
+                val_r = 0;
+                val_g = 0;
+                val_b = 0;
+                wait();
+
+                for (unsigned int v = 0; v < MASK_Y; ++v) {
+                    for (unsigned int u = 0; u < MASK_X; ++u) {
+                    
+                        unsigned char red = i_r.read();
+                        unsigned char green = i_g.read();
+                        unsigned char blue = i_b.read();
+                        
+                        val_r += red * mask[u][v];
+                        val_g += green * mask[u][v];
+                        val_b += blue * mask[u][v];
+                        wait();
+                    
+                    }
+                }
+
+                o_result_r.write(val_r);
+                o_result_g.write(val_g);
+                o_result_b.write(val_b);
+            }
+        }
+
+#### Testbench <sc_module> 中，從 result_r,result_g,result_b <sc_fifo> 讀取資料，並寫入 *target_bitmap 矩陣，作為輸出圖檔的矩陣
+
+        for (y = 0; y != height; ++y) {
+            for (x = 0; x != width; ++x) {
+
+                //.....
+
+                total_r = i_result_r.read();
+                total_g = i_result_g.read();
+                total_b = i_result_b.read();
+
+                *(target_bitmap + bytes_per_pixel * (width * y + x) + 2) = total_r;
+                *(target_bitmap + bytes_per_pixel * (width * y + x) + 1) = total_g;
+                *(target_bitmap + bytes_per_pixel * (width * y + x) + 0) = total_b;
+
+        }
