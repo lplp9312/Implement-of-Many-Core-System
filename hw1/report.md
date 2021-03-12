@@ -4,9 +4,10 @@
 
 ### 結果 
 
-* 原始圖檔 
-* ![image](https://github.com/lplp9312/Implement-of-Many-Core-System/blob/master/hw1/gau_cpp/lena.bmp)
-* 模糊處理 
-* ![image](https://github.com/lplp9312/Implement-of-Many-Core-System/blob/master/hw1/gau_cpp/lena_gau_blur.bmp)
+#### 原始圖檔 
+![image](https://github.com/lplp9312/Implement-of-Many-Core-System/blob/master/hw1/gau_cpp/lena.bmp)
+
+#### 模糊處理 
+![image](https://github.com/lplp9312/Implement-of-Many-Core-System/blob/master/hw1/gau_cpp/lena_gau_blur.bmp)
 
 * 
