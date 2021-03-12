@@ -159,3 +159,13 @@
 
         return 0;
         }
+
+## 用 systemC 程式對 bmp 圖檔進行 Gaussian Blur (高斯模糊)
+
+### 結果
+
+#### 原始圖檔 
+![image](https://github.com/lplp9312/Implement-of-Many-Core-System/blob/master/hw1/gau_systemC/lena_std_short.bmp)
+
+#### 模糊處理 
+![image](https://github.com/lplp9312/Implement-of-Many-Core-System/blob/master/hw1/gau_systemC/build/out.bmp)
