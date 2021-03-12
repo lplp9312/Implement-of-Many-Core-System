@@ -114,7 +114,7 @@
             return 0;
         }
 
-#### 利用 *image_t 矩陣資料，輸出一個經過高斯模糊的bmp圖檔 (gau_blur.cpp)
+#### 利用 *image_t 矩陣資料，輸出一個經過高斯模糊的 bmp 圖檔 (gau_blur.cpp)
 
         int write_bmp(const char *fname_t)
         {
