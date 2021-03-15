@@ -308,7 +308,7 @@
             }
         }
 
-#### Testbench <sc_module> 中，從 result_r,result_g,result_b <sc_fifo> 讀取資料，並寫入 *target_bitmap 矩陣，作為輸出圖檔的矩陣
+#### Testbench <sc_module> 中，從 result_r,result_g,result_b <sc_fifo> 讀取資料，並寫入 *target_bitmap 矩陣，作為輸出圖檔的矩陣 (Testbench.cpp)
 
         for (y = 0; y != height; ++y) {
             for (x = 0; x != width; ++x) {
