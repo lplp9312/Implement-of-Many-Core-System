@@ -6,19 +6,13 @@
 
 #IncludeRegexTransform: 
 
-/home/user/Implement-of-Many-Core-System/hw1/gau_systemC/GauFilter.cpp
-cmath
--
-GauFilter.h
-/home/user/Implement-of-Many-Core-System/hw1/gau_systemC/GauFilter.h
-
-/home/user/Implement-of-Many-Core-System/hw1/gau_systemC/GauFilter.h
+/home/user/Implement-of-Many-Core-System/hw2/gua_systemC_2/GauFilter.h
 systemc
 -
 filter_def.h
-/home/user/Implement-of-Many-Core-System/hw1/gau_systemC/filter_def.h
+/home/user/Implement-of-Many-Core-System/hw2/gua_systemC_2/filter_def.h
 
-/home/user/Implement-of-Many-Core-System/hw1/gau_systemC/Testbench.cpp
+/home/user/Implement-of-Many-Core-System/hw2/gua_systemC_2/Testbench.cpp
 cassert
 -
 cstdio
@@ -26,19 +20,19 @@ cstdio
 cstdlib
 -
 Testbench.h
-/home/user/Implement-of-Many-Core-System/hw1/gau_systemC/Testbench.h
+/home/user/Implement-of-Many-Core-System/hw2/gua_systemC_2/Testbench.h
 
-/home/user/Implement-of-Many-Core-System/hw1/gau_systemC/Testbench.h
+/home/user/Implement-of-Many-Core-System/hw2/gua_systemC_2/Testbench.h
 string
 -
 systemc
 -
 filter_def.h
-/home/user/Implement-of-Many-Core-System/hw1/gau_systemC/filter_def.h
+/home/user/Implement-of-Many-Core-System/hw2/gua_systemC_2/filter_def.h
 
-/home/user/Implement-of-Many-Core-System/hw1/gau_systemC/filter_def.h
+/home/user/Implement-of-Many-Core-System/hw2/gua_systemC_2/filter_def.h
 
-/home/user/Implement-of-Many-Core-System/hw1/gau_systemC/main.cpp
+/home/user/Implement-of-Many-Core-System/hw2/gua_systemC_2/main.cpp
 iostream
 -
 string
@@ -46,9 +40,9 @@ string
 sys/time.h
 -
 GauFilter.h
-/home/user/Implement-of-Many-Core-System/hw1/gau_systemC/GauFilter.h
+/home/user/Implement-of-Many-Core-System/hw2/gua_systemC_2/GauFilter.h
 Testbench.h
-/home/user/Implement-of-Many-Core-System/hw1/gau_systemC/Testbench.h
+/home/user/Implement-of-Many-Core-System/hw2/gua_systemC_2/Testbench.h
 
 /opt/systemc/include/sysc/communication/sc_buffer.h
 sysc/communication/sc_signal.h

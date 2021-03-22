@@ -9,8 +9,8 @@ using namespace sc_core;
 
 #include "filter_def.h"
 
-
-class Testbench : public sc_module {
+class Testbench : public sc_module
+{
 public:
   sc_in_clk i_clk;
   sc_out<bool> o_rst;
@@ -21,6 +21,9 @@ public:
   sc_fifo_in<int> i_result_r;
   sc_fifo_in<int> i_result_g;
   sc_fifo_in<int> i_result_b;
+
+  sc_fifo_out<int> o_width;
+  sc_fifo_out<int> o_height;
 
   SC_HAS_PROCESS(Testbench);
 
@@ -53,5 +56,6 @@ private:
   unsigned char *target_bitmap;
 
   void do_gau_blur();
+  void do_gau_blur_output_bmp();
 };
 #endif
