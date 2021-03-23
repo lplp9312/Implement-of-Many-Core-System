@@ -390,6 +390,6 @@
 在模擬時間上，確實 part2 的程式花費比較少的時間。而在讀取原始圖檔 RGB ，並分別寫入 r,g,b sc_fifo 中。在 part1 的程式中總共傳送了  
 589824 個 pixel，而在 part2 的程式中總共傳送了 65536 個 pixel。所以可以從數據得知，在 part1 的程式每個 pixel 被重複傳送了 9 次  
 ，而在 part2 的程式每個 pixel 只會被傳送 1 次，並存放在 3 個矩陣中，所以在 r,g,b sc_fifo 的使用時間可以被大幅縮減。在 part2 的  
-程式，讀取圖檔和輸出圖檔分別利用 2 個 SC_THREAD 去執行，不像 part1 的程式是共用 1 個 SC_THREAD，是因為在GauFilter.cpp 中，卷積  
-資料並分別寫入 result_r,result_g,result_b ，卻一直沒有進行讀取，造成 sc_fifo 存放太多筆資料，產生 sc_fifo的堵塞導致程式卡死，後  
+程式，讀取圖檔和輸出圖檔分別利用 2 個 SC_THREAD 去執行，不像 part1 的程式是共用 1 個 SC_THREAD，是因為在 GauFilter.cpp 中，卷積  
+資料並分別寫入 result_r,result_g,result_b ，卻一直沒有進行讀取，造成 sc_fifo 存放太多筆資料，產生 sc_fifo 的堵塞導致程式卡死，後  
 來才分別利用 2 個 SC_THREAD 去執行。
