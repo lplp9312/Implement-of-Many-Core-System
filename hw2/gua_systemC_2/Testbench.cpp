@@ -143,10 +143,9 @@ void Testbench::do_gau_blur()
   {
     for (x = 0; x < width; x++)
     {
-
-      o_r.write(*(source_bitmap + bytes_per_pixel * (width * y + x + 28) + 2));
-      o_g.write(*(source_bitmap + bytes_per_pixel * (width * y + x + 28) + 1));
-      o_b.write(*(source_bitmap + bytes_per_pixel * (width * y + x + 28) + 0));
+      o_r.write(*(source_bitmap + bytes_per_pixel * (width * y + x ) + 2));
+      o_g.write(*(source_bitmap + bytes_per_pixel * (width * y + x ) + 1));
+      o_b.write(*(source_bitmap + bytes_per_pixel * (width * y + x ) + 0));
       wait();
       total_pixel = total_pixel + 1;
     }

@@ -185,5 +185,11 @@ void Testbench::do_gau_blur()
   }
   std::cout << std::endl;
   std::cout << "The number of pixels transfer from Testbench to GauFilter = " << total_pixel << std::endl;
+  for (int i = 0; i < 10; i++)
+    std::cout << i << std::endl;
+  std::cout << "test" << std::endl;
+  for (int i = 0; i < 10; ++i)
+    std::cout << i << std::endl;
+
   sc_stop();
 }
