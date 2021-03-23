@@ -6,36 +6,39 @@ using namespace std;
 #include "Testbench.h"
 
 unsigned char header[54] = {
-    0x42,          // identity : B
-    0x4d,          // identity : M
-    0,    0, 0, 0, // file size
-    0,    0,       // reserved1
-    0,    0,       // reserved2
-    54,   0, 0, 0, // RGB data offset
-    40,   0, 0, 0, // struct BITMAPINFOHEADER size
-    0,    0, 0, 0, // bmp width
-    0,    0, 0, 0, // bmp height
-    1,    0,       // planes
-    24,   0,       // bit per pixel
-    0,    0, 0, 0, // compression
-    0,    0, 0, 0, // data size
-    0,    0, 0, 0, // h resolution
-    0,    0, 0, 0, // v resolution
-    0,    0, 0, 0, // used colors
-    0,    0, 0, 0  // important colors
+    0x42,        // identity : B
+    0x4d,        // identity : M
+    0, 0, 0, 0,  // file size
+    0, 0,        // reserved1
+    0, 0,        // reserved2
+    54, 0, 0, 0, // RGB data offset
+    40, 0, 0, 0, // struct BITMAPINFOHEADER size
+    0, 0, 0, 0,  // bmp width
+    0, 0, 0, 0,  // bmp height
+    1, 0,        // planes
+    24, 0,       // bit per pixel
+    0, 0, 0, 0,  // compression
+    0, 0, 0, 0,  // data size
+    0, 0, 0, 0,  // h resolution
+    0, 0, 0, 0,  // v resolution
+    0, 0, 0, 0,  // used colors
+    0, 0, 0, 0   // important colors
 };
 
 Testbench::Testbench(sc_module_name n)
-    : sc_module(n), output_rgb_raw_data_offset(54) {
+    : sc_module(n), output_rgb_raw_data_offset(54)
+{
   SC_THREAD(do_gau_blur);
   sensitive << i_clk.pos();
   dont_initialize();
 }
 
-int Testbench::read_bmp(string infile_name) {
+int Testbench::read_bmp(string infile_name)
+{
   FILE *fp_s = NULL; // source file handler
   fp_s = fopen(infile_name.c_str(), "rb");
-  if (fp_s == NULL) {
+  if (fp_s == NULL)
+  {
     printf("fopen %s error\n", infile_name.c_str());
     return -1;
   }
@@ -58,14 +61,16 @@ int Testbench::read_bmp(string infile_name) {
 
   source_bitmap =
       (unsigned char *)malloc((size_t)width * height * bytes_per_pixel);
-  if (source_bitmap == NULL) {
+  if (source_bitmap == NULL)
+  {
     printf("malloc images_s error\n");
     return -1;
   }
 
   target_bitmap =
       (unsigned char *)malloc((size_t)width * height * bytes_per_pixel);
-  if (target_bitmap == NULL) {
+  if (target_bitmap == NULL)
+  {
     printf("malloc target_bitmap error\n");
     return -1;
   }
@@ -76,12 +81,14 @@ int Testbench::read_bmp(string infile_name) {
   return 0;
 }
 
-int Testbench::write_bmp(string outfile_name) {
+int Testbench::write_bmp(string outfile_name)
+{
   FILE *fp_t = NULL;      // target file handler
   unsigned int file_size; // file size
 
   fp_t = fopen(outfile_name.c_str(), "wb");
-  if (fp_t == NULL) {
+  if (fp_t == NULL)
+  {
     printf("fopen %s error\n", outfile_name.c_str());
     return -1;
   }
@@ -119,11 +126,12 @@ int Testbench::write_bmp(string outfile_name) {
   return 0;
 }
 
-void Testbench::do_gau_blur() {
+void Testbench::do_gau_blur()
+{
   int x, y, v, u;        // for loop counter
   unsigned char R, G, B; // color of R, G, B
   int adjustX, adjustY, xBound, yBound;
-  //int total;
+  int total_pixel = 0;
   double total_r;
   double total_g;
   double total_b;
@@ -131,23 +139,30 @@ void Testbench::do_gau_blur() {
   o_rst.write(false);
   wait(5);
   o_rst.write(true);
-  for (y = 0; y != height; ++y) {
-    for (x = 0; x != width; ++x) {
+  for (y = 0; y != height; ++y)
+  {
+    for (x = 0; x != width; ++x)
+    {
       adjustX = (MASK_X % 2) ? 1 : 0; // 1
       adjustY = (MASK_Y % 2) ? 1 : 0; // 1
       xBound = MASK_X / 2;            // 1
       yBound = MASK_Y / 2;            // 1
 
-      for (v = -yBound; v != yBound + adjustY; ++v) {   //-1, 0, 1
-        for (u = -xBound; u != xBound + adjustX; ++u) { //-1, 0, 1
-          if (x + u >= 0 && x + u < width && y + v >= 0 && y + v < height) {
+      for (v = -yBound; v != yBound + adjustY; ++v)
+      { //-1, 0, 1
+        for (u = -xBound; u != xBound + adjustX; ++u)
+        { //-1, 0, 1
+          if (x + u >= 0 && x + u < width && y + v >= 0 && y + v < height)
+          {
             R = *(source_bitmap +
                   bytes_per_pixel * (width * (y + v) + (x + u)) + 2);
             G = *(source_bitmap +
                   bytes_per_pixel * (width * (y + v) + (x + u)) + 1);
             B = *(source_bitmap +
                   bytes_per_pixel * (width * (y + v) + (x + u)) + 0);
-          } else {
+          }
+          else
+          {
             R = 0;
             G = 0;
             B = 0;
@@ -155,6 +170,7 @@ void Testbench::do_gau_blur() {
           o_r.write(R);
           o_g.write(G);
           o_b.write(B);
+          total_pixel = total_pixel + 1;
         }
       }
 
@@ -165,8 +181,9 @@ void Testbench::do_gau_blur() {
       *(target_bitmap + bytes_per_pixel * (width * y + x) + 2) = total_r;
       *(target_bitmap + bytes_per_pixel * (width * y + x) + 1) = total_g;
       *(target_bitmap + bytes_per_pixel * (width * y + x) + 0) = total_b;
-
     }
   }
+  std::cout << std::endl;
+  std::cout << "The number of pixels transfer from Testbench to GauFilter = " << total_pixel << std::endl;
   sc_stop();
 }

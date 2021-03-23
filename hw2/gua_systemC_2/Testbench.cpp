@@ -131,6 +131,7 @@ int Testbench::write_bmp(string outfile_name)
 void Testbench::do_gau_blur()
 {
   int x, y;
+  int total_pixel = 0;
 
   o_width.write(width);
   o_height.write(height);
@@ -147,8 +148,11 @@ void Testbench::do_gau_blur()
       o_g.write(*(source_bitmap + bytes_per_pixel * (width * y + x + 28) + 1));
       o_b.write(*(source_bitmap + bytes_per_pixel * (width * y + x + 28) + 0));
       wait();
+      total_pixel = total_pixel + 1;
     }
   }
+  std::cout << std::endl;
+  std::cout << "The number of pixels transfer from Testbench to GauFilter = " << total_pixel << std::endl;
   sc_stop();
 }
 void Testbench::do_gau_blur_output_bmp()
