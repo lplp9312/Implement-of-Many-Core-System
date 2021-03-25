@@ -1,6 +1,7 @@
-# Sobel Edge Detector
+# Gaussian Blur
 
 ## SystemC Simulation
 
-- make run
+- $cd build
+- $make run
 
