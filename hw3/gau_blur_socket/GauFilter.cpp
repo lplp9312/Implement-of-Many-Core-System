@@ -125,10 +125,9 @@ void GauFilter::blocking_transport(tlm::tlm_generic_payload &payload, sc_core::s
                 << std::dec << " is not valid" << std::endl;
       break;
     }
-    data_ptr[0] = buffer.uc[0];
-    data_ptr[1] = buffer.uc[1];
-    data_ptr[2] = buffer.uc[2];
-    data_ptr[3] = buffer.uc[3];
+    for (int i = 0; i < 4; i++)
+      data_ptr[i] = buffer.uc[i];
+
     break;
 
   case tlm::TLM_WRITE_COMMAND:
@@ -137,10 +136,8 @@ void GauFilter::blocking_transport(tlm::tlm_generic_payload &payload, sc_core::s
     case GAU_FILTER_R_ADDR:
       if (flag == 0)
       {
-        buffer.uc[0] = data_ptr[0];
-        buffer.uc[1] = data_ptr[1];
-        buffer.uc[2] = data_ptr[2];
-        buffer.uc[3] = data_ptr[3];
+        for (int i = 0; i < 4; i++)
+          buffer.uc[i] = data_ptr[i];
         width.write(buffer.uint);
         flag = 1;
       }
