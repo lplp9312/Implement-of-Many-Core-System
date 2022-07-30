@@ -4,9 +4,9 @@ Design Exploration of Cluster-Based Architecture for DNN Convolution Accelerator
 
 ## Getting started
 
-#. :cmd_host:`$ source /usr/cadtool/user_setup/01-cadence_license_set.cshset`
-#. :cmd_host:`$ source /usr/cad/cadence/cic_setup/stratus.cshrc`
-#. :cmd_host:`$ source /usr/cad/cadence/cic_setup/incisiv.cshrc`
+1. :cmd_host:`$ source /usr/cadtool/user_setup/01-cadence_license_set.cshset`  
+2. :cmd_host:`$ source /usr/cad/cadence/cic_setup/stratus.cshrc`  
+3. :cmd_host:`$ source /usr/cad/cadence/cic_setup/incisiv.cshrc`  
 
 
 ## Add stratus_env.sh
