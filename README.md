@@ -12,10 +12,10 @@ source /usr/cad/cadence/cic_setup/incisiv.cshrc
 
 
 ## Add stratus_env.sh
-```
-cd $project/
-code $project/stratus_env.sh
-```
+
+1. cd $project/
+2. code $project/stratus_env.sh
+
     source /usr/cadtool/user_setup/01-cadence_license_set.cshset
     source /usr/cadtool/user_setup/03-stratus.csh
     source /usr/cad/cadence/cic_setup/incisiv.cshrc
